@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>성결부 찬양 나눔 | 의정부교회 청년회</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+:root{--bg:#ffffff;--ink:#151515;--sub:#8a8a8a;--red:#c8372d;--on:#fff;--line:#e8e8e8;--rec:#151515;--glass:rgba(255,255,255,.6);--gb:rgba(0,0,0,.07);--gs:0 6px 18px rgba(0,0,0,.06);--cv:rgba(21,21,21,.6);--cvon:rgba(200,55,45,.6);--pillbg:rgba(255,255,255,.95);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111;--ink:#f2f2f2;--sub:#8c8c8c;--red:#e0483c;--on:#fff;--line:#2c2c2c;--rec:#000;--glass:rgba(255,255,255,.07);--gb:rgba(255,255,255,.12);--gs:0 6px 18px rgba(0,0,0,.4);--cv:rgba(242,242,242,.22);--cvon:rgba(224,72,60,.6);--pillbg:rgba(255,255,255,.16);}}
+:root[data-theme="dark"]{--bg:#111;--ink:#f2f2f2;--sub:#8c8c8c;--red:#e0483c;--on:#fff;--line:#2c2c2c;--rec:#000;--glass:rgba(255,255,255,.07);--gb:rgba(255,255,255,.12);--gs:0 6px 18px rgba(0,0,0,.4);--cv:rgba(242,242,242,.22);--cvon:rgba(224,72,60,.6);--pillbg:rgba(255,255,255,.16);}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Quicksand","Noto Sans KR",-apple-system,"Apple SD Gothic Neo",sans-serif}
+.app{max-width:430px;margin:0 auto;padding:16px 18px 48px;overflow:hidden}
+.top{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.18em;color:var(--sub);font-weight:500}
+.brand{font-family:"Quicksand","Noto Sans KR",sans-serif;font-weight:700;font-size:24px;letter-spacing:-.02em;margin-top:12px;display:flex;align-items:baseline;gap:8px}
+.brand small{font-family:"Noto Sans KR",sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--red)}
+.foot{margin-top:36px;text-align:center;font-size:11px; 
+   font-weight: bold;
+  letter-spacing:.2em;color:var(--sub)}
+.foot b{display:block;width:24px;height:2px;background:var(--red);margin:0 auto 10px}
+.hero{position:relative;height:300px;margin:6px -18px 0}
+.ring{position:absolute;left:-150px;top:8px;width:296px;height:296px}
+.ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.vinyl{position:absolute;inset:12px;border-radius:50%;background:
+ conic-gradient(from 20deg,transparent 0 10%,rgba(255,255,255,.1) 14%,transparent 20% 60%,rgba(255,255,255,.08) 64%,transparent 70%),
+ repeating-radial-gradient(circle,transparent 0 3px,rgba(255,255,255,.04) 3px 4px),var(--rec);
+ box-shadow:0 12px 34px rgba(0,0,0,.3);outline:1px solid rgba(128,128,128,.25)}
+.vinyl::before{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--red)}
+.vinyl::after{content:"";position:absolute;inset:48.5%;border-radius:50%;background:var(--bg)}
+.arm{position:absolute;left:30px;top:26px;width:132px;height:8px;display:flex;align-items:center;z-index:3;transform-origin:100% 50%;pointer-events:none}
+.arm b{flex:1;height:3px;background:var(--ink);border-radius:3px;opacity:.85}
+.arm i{width:16px;height:10px;background:var(--ink);border-radius:2px;margin-right:-2px;order:-1}
+.arm::after{content:"";position:absolute;right:-7px;width:16px;height:16px;border-radius:50%;background:var(--red);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--ink)}
+.txt{position:absolute;left:158px;right:18px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;z-index:2}
+.lab{font-size:10px;letter-spacing:.18em;color:var(--red);font-weight:700;margin-bottom:8px}
+.ttl{font-family:"Quicksand","Noto Sans KR",sans-serif;font-weight:700;font-size:38px;line-height:1.08;letter-spacing:-.03em;word-break:keep-all}
+.who{font-size:12px;color:var(--sub);margin-top:12px}
+.seek{padding:12px 0;margin-top:-4px;cursor:pointer;touch-action:none}
+.prog{position:relative;height:4px;border-radius:4px;background:var(--line)}
+.knob{position:absolute;top:50%;left:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(200,55,45,.18)}
+.prog i{display:block;height:100%;width:100%;background:var(--red);transform:scaleX(0);transform-origin:0 50%;border-radius:4px}
+.time{display:flex;justify-content:space-between;font-size:10px;color:var(--sub);margin-top:-2px;letter-spacing:.08em}
+.ctr{display:flex;align-items:center;justify-content:center;gap:16px;margin:14px 0 6px}
+.ib{width:46px;height:46px;border-radius:50%;border:1px solid var(--gb);background:var(--glass);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:var(--gs);color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
+.ib svg,.pp svg{width:20px;height:20px;fill:currentColor;stroke:currentColor;stroke-width:1.4;stroke-linejoin:round}
+.ib.sm{width:40px;height:40px}.ib.sm svg{width:17px;height:17px}
+.ib svg.ln{fill:none;stroke-width:2;stroke-linecap:round}
+
+.ppw{position:relative;width:58px;height:58px}
+
+.pulse{position:absolute;inset:0;border-radius:50%;background:var(--red);opacity:0}
+
+.pp{position:relative;width:58px;height:58px;border-radius:50%;border:0;background:var(--red);color:var(--on);font-size:20px;cursor:pointer;display:grid;place-items:center;box-shadow:0 8px 22px rgba(200,55,45,.35)}
+
+.pp span{display:block}
+
+.tabs{position:relative;display:flex;gap:2px;margin:18px 0 6px;padding:4px;border-radius:16px;border:1px solid var(--gb);background:var(--glass);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:var(--gs)}
+.tab{position:relative;z-index:1;flex:1;border:0;background:none;padding:10px 6px;border-radius:12px;font-family:inherit;font-size:13px;font-weight:700;color:var(--sub);cursor:pointer;letter-spacing:.04em;transition:color .3s}
+.tab.on{color:var(--ink)}
+.ind{position:absolute;left:0;top:4px;bottom:4px;width:50px;border-radius:12px;background:var(--pillbg);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.sec{font-size:10px;letter-spacing:.2em;color:var(--red);font-weight:700;margin:18px 0 4px}
+.item{margin:8px 0}
+.row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;border:1px solid var(--gb);background:var(--glass);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:var(--gs);cursor:pointer;transition:background .3s,border-color .3s}
+.row.on{background:rgba(200,55,45,.08);border-color:rgba(200,55,45,.3)}
+.n{width:22px;font-size:10px;color:var(--sub);letter-spacing:.05em}
+.cv{width:42px;height:42px;flex:none;border-radius:11px;background:var(--cv);color:#fff;display:grid;place-items:center;font-family:"Quicksand","Noto Sans KR",sans-serif;font-weight:700;font-size:17px;transition:background .3s}
+.row.on .cv{background:var(--cvon);color:#fff}
+.row .t{font-size:14px;font-weight:700;transition:color .3s}
+.row.on .t{color:var(--red)}
+.row .s{font-size:11px;color:var(--sub);margin-top:1px}
+.row .d{margin-left:auto;font-size:11px;color:var(--sub)}
+.why{height:0;opacity:0;overflow:hidden}
+.why-in{margin:6px 4px 2px;padding:12px 14px;border-radius:14px;border:1px solid var(--gb);background:var(--glass);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.wl{font-size:10px;letter-spacing:.2em;color:var(--red);font-weight:700}
+.wt{font-size:15px;font-weight:700;margin:5px 0 6px}
+.why-in p{margin:0;font-size:13px;line-height:1.75;color:var(--sub);border-left:2px solid var(--red);padding-left:10px}
+.hint{font-size:12px;color:var(--sub);padding:20px 0;text-align:center}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top"><span>의정부교회 청년회</span><span>PRAISE · SHARING</span></div>
+  <div class="brand">성결부<small>찬양 나눔</small></div>
+
+  <div class="hero">
+    <div class="ring" id="ring">
+      <div class="vinyl" id="vinyl"></div>
+      <svg viewBox="0 0 296 296"><circle cx="148" cy="148" r="146" fill="none" stroke="var(--line)" stroke-width="1.5"/><circle id="arc" cx="148" cy="148" r="146" fill="none" stroke="var(--red)" stroke-width="2" stroke-dasharray="917.4" stroke-dashoffset="917.4"/></svg>
+    </div>
+    <div class="arm" id="arm"><i></i><b></b></div>
+    <div class="txt">
+      <div class="lab">NOW PLAYING</div>
+      <div class="ttl" id="ttl">찬양을<br>선택하세요</div>
+      <div class="who" id="who">재생 버튼을 눌러보세요</div>
+    </div>
+  </div>
+
+  <div class="seek" id="seek"><div class="prog"><i id="fill"></i><span class="knob" id="knob"></span></div></div>
+  <div class="time"><span id="cur">0:00</span><span id="dur">0:00</span></div>
+  <div class="ctr">
+    <button class="ib sm" id="shuf" title="랜덤 섞기" aria-label="랜덤 섞기"><svg class="ln" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></button>
+    <button class="ib" id="prev" aria-label="이전 곡"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9.5 12z"/></svg></button>
+    <div class="ppw"><div class="pulse" id="pulse"></div>
+    <button class="pp" id="pp" aria-label="재생/일시정지"><span id="ic"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button></div>
+    <button class="ib" id="next" aria-label="다음 곡"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l10.5-7z"/></svg></button>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-t="all">전체 재생목록</button>
+    <button class="tab" data-t="형제">형제</button>
+    <button class="tab" data-t="자매">자매</button>
+    <div class="ind" id="ind"></div>
+  </div>
+  <div id="view"></div>
+  <div class="foot"><b></b>의정부교회 청년회 · 성결부</div>
+</div>
+
+<script>
+/* ▼ 실제 데이터로 바꾸세요. src에 mp3 주소를 넣으면 실제 재생, 비우면 시뮬레이션 ▼ */
+const DATA=[
+ {who:"유주선",g:"형제",title:"주 품에",reason:"힘들 때마다 이 찬양을 부르면 마음이 놓여요.",dur:215,src:""},
+ {who:"표대훈",g:"형제",title:"나 같은 죄인 살리신",reason:"은혜가 제일 크게 느껴지는 찬양이라서 좋아해요.",dur:238,src:""},
+ {who:"김태일",g:"형제",title:"내 영혼아 찬양하라",reason:"아침마다 감사를 고백하게 해줘요.",dur:204,src:""},
+ {who:"박중혁",g:"형제",title:"주 품에",reason:"힘들 때마다 이 찬양을 부르면 마음이 놓여요.",dur:215,src:""},
+ {who:"준호",g:"형제",title:"나 같은 죄인 살리신",reason:"은혜가 제일 크게 느껴지는 찬양이라서 좋아해요.",dur:238,src:""},
+ {who:"지훈",g:"형제",title:"내 영혼아 찬양하라",reason:"아침마다 감사를 고백하게 해줘요.",dur:204,src:""},
+  {who:"유주선",g:"형제",title:"주 품에",reason:"힘들 때마다 이 찬양을 부르면 마음이 놓여요.",dur:215,src:""},
+ {who:"표대훈",g:"형제",title:"나 같은 죄인 살리신",reason:"은혜가 제일 크게 느껴지는 찬양이라서 좋아해요.",dur:238,src:""},
+ {who:"김태일",g:"형제",title:"내 영혼아 찬양하라",reason:"아침마다 감사를 고백하게 해줘요.",dur:204,src:""},
+ {who:"민수",g:"형제",title:"주 품에",reason:"힘들 때마다 이 찬양을 부르면 마음이 놓여요.",dur:215,src:""},
+ {who:"준호",g:"형제",title:"나 같은 죄인 살리신",reason:"은혜가 제일 크게 느껴지는 찬양이라서 좋아해요.",dur:238,src:""},
+ {who:"지훈",g:"형제",title:"내 영혼아 찬양하라",reason:"아침마다 감사를 고백하게 해줘요.",dur:204,src:""},
+ {who:"은혜",g:"자매",title:"주님 너무 아름다워",reason:"가사가 예배의 중심을 다시 알려줘요.",dur:226,src:""},
+ {who:"수진",g:"자매",title:"어찌 날 위해",reason:"십자가의 사랑을 생각하며 늘 눈물이 나요.",dur:247,src:""},
+ {who:"하은",g:"자매",title:"예수 사랑하심은",reason:"어릴 때부터 불러서 가장 편안한 찬양이에요.",dur:190,src:""},
+  {who:"심효선",g:"자매",title:"주님 너무 아름다워",reason:"가사가 예배의 중심을 다시 알려줘요.",dur:226,src:""},
+ {who:"홍어진",g:"자매",title:"어찌 날 위해",reason:"십자가의 사랑을 생각하며 늘 눈물이 나요.",dur:247,src:""},
+ {who:"김정민",g:"자매",title:"예수 사랑하심은",reason:"어릴 때부터 불러서 가장 편안한 찬양이에요.",dur:190,src:""},
+  {who:"정은주",g:"자매",title:"주님 너무 아름다워",reason:"가사가 예배의 중심을 다시 알려줘요.",dur:226,src:""},
+ {who:"최태림",g:"자매",title:"어찌 날 위해",reason:"십자가의 사랑을 생각하며 늘 눈물이 나요.",dur:247,src:""},
+ {who:"김서인",g:"자매",title:"예수 사랑하심은",reason:"어릴 때부터 불러서 가장 편안한 찬양이에요.",dur:190,src:""},
+  {who:"정윤서",g:"자매",title:"주님 너무 아름다워",reason:"가사가 예배의 중심을 다시 알려줘요.",dur:226,src:""},
+ {who:"이예진",g:"자매",title:"어찌 날 위해",reason:"십자가의 사랑을 생각하며 늘 눈물이 나요.",dur:247,src:""},
+ {who:"김정민",g:"자매",title:"예수 사랑하심은",reason:"어릴 때부터 불러서 가장 편안한 찬양이에요.",dur:190,src:""},
+];
+const $=id=>document.getElementById(id), C=917.4;
+const fmt=s=>Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");
+const pad=n=>String(n).padStart(2,"0");
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+
+const SORTED=[...DATA].sort((a,b)=>a.who.localeCompare(b.who,"ko")); // 가나다순
+const BY_TITLE=[...DATA].sort((a,b)=>a.title.localeCompare(b.title,"ko")); // 전체 재생목록: 찬양 제목 가나다순
+let randomMode=false;
+let all=BY_TITLE, queue=all, cur=null, playing=false, t=0, tab="all", sel=null, rows=[];
+const audio=new Audio();
+const ICON={play:'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',pause:'<svg viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>'};
+
+/* ---------- GSAP: 레코드 회전 (가속/감속) ---------- */
+const spin=gsap.to("#vinyl",{rotation:"+=360",duration:3.4,ease:"none",repeat:-1});
+spin.timeScale(0);
+const pulse=gsap.fromTo("#pulse",{scale:1,opacity:.45},{scale:1.75,opacity:0,duration:1.5,repeat:-1,ease:"power1.out",paused:true});
+gsap.set("#arm",{rotation:12});
+
+function armAngle(p){return -30-p*14}
+function setPlaying(on){
+  playing=on;
+  gsap.to(spin,{timeScale:on?1:0,duration:on?1.6:1.3,ease:on?"power2.out":"power3.out",overwrite:true});
+  gsap.to("#arm",{rotation:on?armAngle(cur?t/dur():0):12,duration:1.1,ease:on?"back.out(1.4)":"power2.inOut",overwrite:true});
+  on?pulse.play():(pulse.pause(),gsap.to("#pulse",{opacity:0,duration:.3}));
+  gsap.fromTo("#ic",{rotation:-90,scale:.5,opacity:0},{rotation:0,scale:1,opacity:1,duration:.4,ease:"back.out(2)"});
+  $("ic").innerHTML=on?ICON.pause:ICON.play;
+}
+const dur=()=>cur.src&&audio.duration?audio.duration:cur.dur;
+
+function load(s,list){
+  queue=list||queue; cur=s; t=0;
+  if(s.src){audio.src=s.src; if(playing)audio.play().catch(()=>{});}
+  $("ttl").textContent=s.title; $("who").textContent=s.who+(s.g==="형제"?" 형제":" 자매")+"의 찬양";
+  $("dur").textContent=fmt(s.dur);
+  gsap.fromTo("#ttl",{y:34,opacity:0,skewY:5},{y:0,opacity:1,skewY:0,duration:.8,ease:"expo.out"});
+  gsap.fromTo("#who",{x:-14,opacity:0},{x:0,opacity:1,duration:.6,delay:.12,ease:"power3.out"});
+  /* 톤암: 들었다가 다시 내려놓기 + 레코드 살짝 튕김 */
+  if(playing){gsap.timeline({overwrite:true}).to("#arm",{rotation:12,duration:.35,ease:"power2.in"}).to("#arm",{rotation:armAngle(0),duration:.9,ease:"back.out(1.4)"});}
+  gsap.fromTo("#ring",{scale:.96},{scale:1,duration:.9,ease:"elastic.out(1,.45)"});
+  gsap.set("#fill",{scaleX:0}); gsap.set("#knob",{left:"0%"}); gsap.set("#arc",{strokeDashoffset:C}); $("cur").textContent="0:00";
+  markActive();
+}
+function play(s,list){load(s,list); if(s.src)audio.play().catch(()=>{}); setPlaying(true)}
+function toggle(){
+  if(!cur){play(queue[0]);return}
+  if(cur.src){playing?audio.pause():audio.play()}
+  setPlaying(!playing);
+}
+function step(d){
+  if(!cur)return;
+  const i=(queue.indexOf(cur)+d+queue.length)%queue.length;
+  load(queue[i]); if(playing&&queue[i].src)audio.play().catch(()=>{});
+}
+function upd(d=1){
+  if(!cur)return;
+  const p=Math.min(1,t/dur());
+  gsap.to("#fill",{scaleX:p,duration:d,ease:"none",overwrite:true});
+  gsap.to("#knob",{left:(p*100)+"%",duration:d,ease:"none",overwrite:true});
+  gsap.to("#arc",{strokeDashoffset:C*(1-p),duration:d,ease:"none",overwrite:true});
+  gsap.to("#arm",{rotation:armAngle(p),duration:d,ease:"none",overwrite:true});
+  $("cur").textContent=fmt(t);
+}
+setInterval(()=>{
+  if(!playing||!cur)return;
+  if(cur.src){t=audio.currentTime;upd();return}
+  t++; if(t>=cur.dur){step(1)} else upd();
+},1000);
+audio.onended=()=>step(1);
+
+/* ---------- 목록 ---------- */
+function markActive(){
+  rows.forEach((r,i)=>{
+    const on=rowsList[i]===cur; r.classList.toggle("on",on);
+    if(tab!=="all"){r.querySelector(".s").textContent=on?"♪ 재생 중":"눌러서 듣기"}
+  });
+}
+let rowsList=[];
+function showWhy(anim){
+  document.querySelectorAll(".why").forEach((w,i)=>{
+    const on=sel&&rowsList[i]===sel;
+    if(on&&!w.dataset.open){
+      w.dataset.open="1";
+      gsap.to(w,{height:"auto",opacity:1,duration:anim?.5:0,ease:"power3.out"});
+      if(anim)gsap.from(w.querySelectorAll(".why-in > *"),{y:10,opacity:0,stagger:.07,duration:.45,delay:.1,ease:"power3.out"});
+    }else if(!on&&w.dataset.open){
+      delete w.dataset.open;
+      gsap.to(w,{height:0,opacity:0,duration:anim?.35:0,ease:"power2.inOut"});
+    }
+  });
+}
+function render(){
+  const v=$("view");
+  if(tab==="all"){
+    rowsList=all;
+    v.innerHTML='<div class="sec">AUTO PLAYLIST · '+(randomMode?"RANDOM":"가나다순")+'</div>'+all.map((s,i)=>
+      `<div class="item"><div class="row"><div class="n">${pad(i+1)}</div><div class="cv">${s.who[0]}</div>
+       <div><div class="t">${s.title}</div><div class="s">${s.who} ${s.g}</div></div><div class="d">${fmt(s.dur)}</div></div></div>`).join("");
+  }else{
+    rowsList=SORTED.filter(s=>s.g===tab);
+    v.innerHTML='<div class="sec">'+(tab==="형제"?"BROTHERS":"SISTERS")+'</div>'+(sel&&sel.g===tab?'':'<div class="hint">이름을 눌러 찬양과 이유를 확인하세요</div>')+rowsList.map((s,i)=>
+      `<div class="item"><div class="row"><div class="n">${pad(i+1)}</div><div class="cv">${s.who[0]}</div>
+       <div><div class="t">${s.who}</div><div class="s">눌러서 듣기</div></div><div class="d">${fmt(s.dur)}</div></div>
+       <div class="why"><div class="why-in"><div class="wl">WHY THIS SONG</div><div class="wt">♪ ${s.title}</div><p>${s.reason}</p></div></div></div>`).join("");
+  }
+  rows=[...v.querySelectorAll(".row")];
+  rows.forEach((r,i)=>{
+    r.onclick=()=>{
+      gsap.fromTo(r.querySelector(".cv"),{scale:.8},{scale:1,duration:.6,ease:"elastic.out(1,.4)"});
+      if(tab!=="all"){sel=rowsList[i]; play(sel,rowsList); showWhy(true); const h=document.querySelector(".hint"); if(h)h.remove()} else play(rowsList[i],all);
+    };
+  });
+  showWhy(false); markActive();
+  gsap.from("#view .sec, #view .row, #view .hint",{y:20,opacity:0,stagger:.06,duration:.55,ease:"power3.out"});
+}
+
+/* ---------- 탭 인디케이터 ---------- */
+const tabs=[...document.querySelectorAll(".tab")];
+function moveInd(anim){
+  const el=tabs.find(b=>b.dataset.t===tab);
+  gsap.to("#ind",{x:el.offsetLeft,width:el.offsetWidth,duration:anim?.55:0,ease:"expo.out"});
+}
+tabs.forEach(b=>b.onclick=()=>{
+  if(tab===b.dataset.t)return;
+  tabs.forEach(x=>x.classList.toggle("on",x===b)); tab=b.dataset.t; moveInd(true);
+  gsap.to("#view",{opacity:0,y:8,duration:.15,onComplete:()=>{render();gsap.to("#view",{opacity:1,y:0,duration:.25})}});
+});
+
+/* ---------- 버튼 눌림 효과 ---------- */
+document.querySelectorAll(".ib,.pp,.tab").forEach(el=>{
+  el.addEventListener("pointerdown",()=>gsap.to(el,{scale:.86,duration:.12}));
+  ["pointerup","pointerleave","pointercancel"].forEach(e=>el.addEventListener(e,()=>gsap.to(el,{scale:1,duration:.6,ease:"elastic.out(1,.4)",overwrite:"auto"})));
+});
+/* 진행바를 누르거나 끌면 그 위치부터 재생 */
+function seekTo(x){
+  if(!cur)return;
+  const r=$("seek").getBoundingClientRect();
+  const p=Math.max(0,Math.min(1,(x-r.left)/r.width));
+  t=p*dur();
+  if(cur.src&&audio.duration)audio.currentTime=t;
+  upd(.2);
+}
+let seeking=false;
+$("seek").addEventListener("pointerdown",e=>{seeking=true;$("seek").setPointerCapture(e.pointerId);seekTo(e.clientX)});
+$("seek").addEventListener("pointermove",e=>{if(seeking)seekTo(e.clientX)});
+["pointerup","pointercancel"].forEach(ev=>$("seek").addEventListener(ev,()=>{seeking=false}));
+$("pp").onclick=toggle; $("prev").onclick=()=>step(-1); $("next").onclick=()=>step(1);
+$("shuf").onclick=()=>{
+  randomMode=!randomMode;
+  all=randomMode?shuffle(DATA):BY_TITLE;
+  if(tab==="all")queue=all; render();
+  $("shuf").style.color=randomMode?"var(--red)":"";
+  gsap.fromTo("#shuf",{rotation:0},{rotation:360,duration:.6,ease:"back.out(1.6)"});
+};
+
+/* ---------- 인트로 ---------- */
+render(); moveInd(false);
+gsap.timeline({defaults:{ease:"expo.out"}})
+  .from(".top,.brand",{opacity:0,y:-12,duration:.6,stagger:.1})
+  .from("#ring",{x:-190,rotation:-120,opacity:0,duration:1.4},"<")
+  .from("#arm",{opacity:0,y:-20,duration:.8},"-=.8")
+  .from(".lab,.ttl,.who",{x:30,opacity:0,stagger:.12,duration:.9},"-=1")
+  .from(".prog,.time",{opacity:0,duration:.6},"-=.6")
+  .from(".ctr > *",{y:24,opacity:0,scale:.6,stagger:.08,duration:.7,ease:"back.out(1.8)"},"-=.6")
+  .from(".tabs",{opacity:0,y:14,duration:.6},"-=.5");
+</script>
+</body>
+</html>
